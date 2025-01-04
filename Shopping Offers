@@ -1,0 +1,30 @@
+Problem = 638. Shopping Offers
+
+class Solution:
+    def shoppingOffers(self, price: List[int], special: List[List[int]], needs: List[int]) -> int:
+        return self.helper(price, special, needs, 0)
+    
+    def helper(self, price: List[int], special: List[List[int]], needs: List[int], pos: int) -> int:
+        local_min = self.directPurchase(price, needs)
+        for i in range(pos, len(special)):
+            offer = special[i]
+            temp = []
+            for j in range(len(needs)):
+                if needs[j] < offer[j]:  # check if the current offer is valid
+                    temp = None
+                    break
+                temp.append(needs[j] - offer[j])
+            
+            if temp is not None:  # use the current offer and try next
+                local_min = min(local_min, offer[-1] + self.helper(price, special, temp, i))
+        
+        return local_min
+    
+    def directPurchase(self, price: List[int], needs: List[int]) -> int:
+        total = 0
+        for i in range(len(needs)):
+            total += price[i] * needs[i]
+        
+        return total
+
+        
