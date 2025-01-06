@@ -1,0 +1,26 @@
+Problem = 188. Best Time to Buy and Sell Stock IV
+
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        n = len(prices)
+        front = [[0] * (k + 1) for _ in range(2)]
+        curr = [[0] * (k + 1) for _ in range(2)]
+        
+        for i in range(n - 1, -1, -1):
+            for j in range(2):
+                for k in range(1, k + 1):
+                    profit = 0
+                    if j:
+                        pick = -prices[i] + front[0][k]
+                        notPick = front[1][k]
+                        profit = max(pick, notPick)
+                    else:
+                        pick = prices[i] + front[1][k - 1]
+                        notPick = front[0][k]
+                        profit = max(pick, notPick)
+                    curr[j][k] = profit
+            front = curr
+        
+        return front[1][k]
+
+        
