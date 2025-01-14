@@ -1,0 +1,16 @@
+187. Repeated DNA Sequences
+
+class Solution:
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:
+        set_ = set()
+        map_ = {}
+        
+        for i in range(len(s) - 9):
+            str_ = s[i:i + 10]
+            if str_ in map_:
+                set_.add(str_)
+            else:
+                map_[str_] = 1
+        
+        return list(set_)
+        
