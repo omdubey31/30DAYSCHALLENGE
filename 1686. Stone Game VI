@@ -1,0 +1,10 @@
+1686. Stone Game VI
+
+class Solution:
+    def stoneGameVI(self, aliceValues: List[int], bobValues: List[int]) -> int:
+        arr = sorted(zip(aliceValues, bobValues), 
+                     key = lambda x: -sum(x))
+                     a = sum([i[0] for i in arr[0::2]])       
+        b = sum([i[1] for i in arr[1::2]])          
+        return (a>=b) - (a<=b)              
+								
