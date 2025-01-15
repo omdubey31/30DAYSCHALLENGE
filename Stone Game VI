@@ -1,0 +1,26 @@
+class Solution:
+    def stoneGameVI(self, aliceValues: List[int], bobValues: List[int]) -> int:
+        pq = []
+        n = len(aliceValues)
+        for i in range(n):
+            heapq.heappush(pq, (-(aliceValues[i] + bobValues[i]), (aliceValues[i], bobValues[i])))
+
+        flag = 0  
+        val = 0
+        
+        while pq:
+            if flag == 0:
+                val += pq[0][1][0]
+            else:
+                val -= pq[0][1][1]
+            flag = 1 - flag
+            heapq.heappop(pq)
+
+        if val == 0:
+            return 0  
+        if val > 0:
+            return 1  
+        return -1  
+
+
+        
