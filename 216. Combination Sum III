@@ -1,0 +1,25 @@
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        result = []
+        
+        def func(ind,sum,arr,res,k):
+
+            if len(arr) == k and sum == 0:
+                res.append(arr[:])
+                return
+            
+
+            for i in range(ind,10):
+
+                if i > sum:
+                    break
+                
+                arr.append(i)
+                func(i+1,sum - i,arr,res,k)
+                arr.pop()
+
+
+        func(1,n,[],result,k)
+        return result
+        
+        
