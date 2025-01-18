@@ -1,0 +1,32 @@
+class Solution:
+    def minimizeSet(self, divisor1: int, divisor2: int, uniqueCnt1: int, uniqueCnt2: int) -> int:
+        start = uniqueCnt1+uniqueCnt2
+        end = start*2
+        left = start
+        right = end+1
+        ans = 0
+
+        def valid(num):
+            notfirst = num//divisor1
+            notsecond = num//divisor2
+            notboth = num//math.lcm(divisor1, divisor2)
+
+            if num < uniqueCnt1 + notfirst:
+                return False
+            elif num < uniqueCnt2 + notsecond:
+                return False
+            elif num < uniqueCnt1 + uniqueCnt2 + notboth:
+                return False
+            return True
+
+        while left <= right:
+            mid = (left+right)//2
+            res = valid(mid)
+            if res:
+                ans = mid
+                right = mid-1
+            else:
+                left = mid+1
+        return ans
+
+        
