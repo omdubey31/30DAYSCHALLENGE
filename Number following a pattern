@@ -1,0 +1,21 @@
+class Solution:
+    def printMinNumberForPattern(self,S):
+        # code here
+        stk = []
+        
+        ans  , current_iter = '' , 0
+        
+        for i in range(len(S)):
+            stk.append(i + 1)
+            
+            if S[i] == 'I':
+                while len(stk) > 0:
+                    ans += str(stk.pop())
+                
+            current_iter = i
+             
+        stk.append(current_iter+2)
+        while len(stk) > 0:
+            ans += str(stk.pop())
+        
+        return ans
