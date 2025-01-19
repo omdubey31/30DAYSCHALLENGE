@@ -1,0 +1,12 @@
+class Solution:
+    def findTwoElement( self,arr): 
+        # code here
+        gaussian_sum = int((len(arr) * (len(arr) + 1)) / 2)
+        arr_sum = sum(arr)
+        set_sum = sum(set(arr))
+
+        duplicate = arr_sum - set_sum
+        
+        missing = gaussian_sum - set_sum
+
+        return [duplicate, missing]
