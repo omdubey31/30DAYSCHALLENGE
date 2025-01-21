@@ -1,0 +1,20 @@
+class Solution:
+    def encode(self, s : str) -> str:
+        # code here
+        sentence = list(s)
+        index = 0
+        new_index = 0
+        count = 0
+        output_str = ""
+        
+        while index < len(sentence):
+            if new_index < len(sentence) and sentence[index] == sentence[new_index]:
+                count += 1
+                new_index += 1
+            else:
+                output_str += sentence[index] + str(count)
+                count = 0
+                index = new_index
+        return output_str 
+        
+
