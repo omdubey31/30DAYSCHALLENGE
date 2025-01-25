@@ -1,0 +1,13 @@
+class Solution:
+    def findFirstNode(self, head):
+        #code here
+        mp = {}
+        curr = head
+        while curr is not None:
+            if curr in mp:
+                return curr
+            mp[curr] = curr
+            curr = curr.next
+            
+        res = Node(-1)
+        return res
